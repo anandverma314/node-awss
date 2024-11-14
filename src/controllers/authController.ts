@@ -70,8 +70,7 @@ const signIn = async (req: Request, res: Response) => {
 
     // if the (user) exist  in database we will check the password is valid or not ;
     // compare the password in db and the password sended in the request body
-    const isPasswordMatched = await verifyPassword(isUserExist?.password, password);
-    // const isPasswordMatched = isUserExist?.password === password;
+    const isPasswordMatched = await verifyPassword(password, isUserExist?.password);
 
     // if not matched send response that wrong password;
     if (!isPasswordMatched) {

@@ -12,8 +12,11 @@ export const hashPassword = async (password: string): Promise<string> => {
 };
 
 export const verifyPassword = async (enteredPassword: string, storedPasswordHash: string): Promise<boolean> => {
-    console.log(enteredPassword, storedPasswordHash);
-    
+  try {
     const isMatch = await bcrypt.compare(enteredPassword, storedPasswordHash);
     return isMatch;
-  };
+  } catch (error) {
+    console.error('Error comparing passwords:', error);
+    return false;
+  }
+};
