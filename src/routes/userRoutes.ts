@@ -9,6 +9,9 @@ import {
   } from "../controllers/employeeController";
 import { verifyTokenMiddleware } from "../middleware/verifyTokenMiddleware";
 import { verifyRoleMiddleware } from "../middleware/verifyRoleMiddleware";
+import { sendEmail } from '../controllers/emailController';
+
+router.post('/sendEmail', sendEmail);
 
 router.get("/getAllEmployee", verifyTokenMiddleware, verifyRoleMiddleware("ADMIN", "SUPER_ADMIN"), getAllEmployee);
 router.get("/getOneEmployee/:id", verifyTokenMiddleware, verifyRoleMiddleware("ADMIN", "SUPER_ADMIN"), getEmployee);
